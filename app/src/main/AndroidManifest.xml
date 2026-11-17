@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- to check whether the phone is online before downloading -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- for "search by distance" from the phone's coarse location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Wilson_Stuart_S2323311"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <!-- Google Maps key (Lab 7): the value comes from MAPS_API_KEY in local.properties -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <!-- Traffic Scotland keys (protectingYourKeys.docx): values come from local.properties -->
+        <meta-data
+            android:name="org.me.gcu.wilson_stuart_s2323311.TS_CLIENT_ID"
+            android:value="${TS_CLIENT_ID}" />
+        <meta-data
+            android:name="org.me.gcu.wilson_stuart_s2323311.TS_CLIENT_KEY"
+            android:value="${TS_CLIENT_KEY}" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
