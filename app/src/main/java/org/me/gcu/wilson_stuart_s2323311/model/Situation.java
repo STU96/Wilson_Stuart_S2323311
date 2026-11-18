@@ -3,7 +3,7 @@ package org.me.gcu.wilson_stuart_s2323311.model;
 import java.util.Date;
 import java.util.Locale;
 
-// One <situation> from either feed (Lab 3 "Thing" class, extended).
+// Holds one <situation> from either feed
 public class Situation {
 
     private final FeedType feedType;
@@ -25,18 +25,18 @@ public class Situation {
     private Impact impact = new Impact();
     private TrafficLocation location = new TrafficLocation();
 
-    // Worked out from the description text (roadworks): "A9 Lothmore SB - TTL"
+    // Split out of the roadworks description, e.g. "A9 Lothmore SB - TTL"
     private String locationText = "";       // "A9 Lothmore SB"
     private String worksType = "";          // "TTL"
 
-    // Set by a distance search so the list can show "3.2 km away"; -1 = not set
+    // Filled in by the distance search so the list can show "3.2 km away" (-1 = not set)
     private double distanceKm = -1;
 
     public Situation(FeedType feedType) {
         this.feedType = feedType;
     }
 
-    // ---------- getters and setters (generated with Alt+Insert, as in Lab 3) ----------
+    // ---------- getters and setters ----------
 
     public FeedType getFeedType() { return feedType; }
 
@@ -57,7 +57,7 @@ public class Situation {
 
     public String getDescription() { return description; }
 
-    // Storing the description also breaks it down into location text + works type
+    // Also splits the description into the location part and the works type
     public void setDescription(String description) {
         this.description = description;
         int lastDash = description.lastIndexOf(" - ");
@@ -109,7 +109,7 @@ public class Situation {
     public double getDistanceKm() { return distanceKm; }
     public void setDistanceKm(double distanceKm) { this.distanceKm = distanceKm; }
 
-    // ---------- derived information ----------
+    // ---------- worked-out values ----------
 
     public boolean isRoadworks() {
         return feedType == FeedType.ROADWORKS;
@@ -133,10 +133,10 @@ public class Situation {
         return road;
     }
 
-    // Classifies the situation so that each kind can have its own icon
+    // Works out the type of situation so it can get the right icon
     public SituationKind getKind() {
         if (isRoadworks() || recordType.contains("Works")) {
-            // Use the works type after the last " - "; if there is none, use the whole description
+            // use the works type after the last " - ", or the whole description if there isn't one
             String works = (worksType.isEmpty() ? description : worksType).toLowerCase(Locale.UK);
             if (works.contains("ttl") || works.contains("temp light") || works.contains("traffic light")
                     || works.contains("stop and go") || works.contains("stop/go") || works.contains("convoy")) {
@@ -218,8 +218,8 @@ public class Situation {
         return earthRadiusKm * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
 
-    // Road search: road codes must match exactly (so "A9" does not match "A90");
-    // any other text is matched anywhere in the description or place names.
+    // Road search: road codes have to match exactly (so "A9" doesn't match "A90"),
+    // anything else is searched for in the description and place names
     public boolean matchesRoad(String query) {
         String road = TextHelper.normaliseRoad(query);
         if (road.isEmpty()) {

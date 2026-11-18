@@ -20,12 +20,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-        <!-- Google Maps key (Lab 7): the value comes from MAPS_API_KEY in local.properties -->
+        <!-- Google Maps key, read from local.properties -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
 
-        <!-- Traffic Scotland keys (protectingYourKeys.docx): values come from local.properties -->
+        <!-- Traffic Scotland keys, read from local.properties -->
         <meta-data
             android:name="org.me.gcu.wilson_stuart_s2323311.TS_CLIENT_ID"
             android:value="${TS_CLIENT_ID}" />

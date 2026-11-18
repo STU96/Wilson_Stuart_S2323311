@@ -15,7 +15,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Date;
 
-// Parses a DATEX II feed (already downloaded into a String) with XmlPullParser - Lab 3 approach.
+// Parses a DATEX II feed (stored in a String) using XmlPullParser
 public class TrafficXmlParser {
 
     private static final String TAG = "Parsing";
@@ -54,7 +54,7 @@ public class TrafficXmlParser {
                         publicationTime = TextHelper.parseXmlDate(xpp.nextText());
 
                     } else if (tag.equalsIgnoreCase("situation")) {
-                        // A new situation starts: create a new object (like a new Thing in Lab 3)
+                        // start of a new situation, so create a new object
                         situation = new Situation(feedType);
                         situation.setSituationId(xpp.getAttributeValue(null, "id"));
                         recordCount = 0;
@@ -67,7 +67,6 @@ public class TrafficXmlParser {
                             recordCount++;
                             if (recordCount == 1) {
                                 // Attributes: xsi:type="..." id="..." version="..."
-                                // (the spec's xpp.getAttributeValue(0) also returns the xsi:type here)
                                 situation.setRecordType(xpp.getAttributeValue(XSI_NAMESPACE, "type"));
                                 situation.setRecordId(xpp.getAttributeValue(null, "id"));
                                 situation.setRecordVersion(
@@ -168,7 +167,7 @@ public class TrafficXmlParser {
                             situation.setUrgentRoadworks(Boolean.parseBoolean(xpp.nextText().trim()));
                         } else if (recordDepth > 0 && xpp.getDepth() == recordDepth + 1 && tag.endsWith("Type")) {
                             // roadOrCarriagewayOrLaneManagementType, abnormalTrafficType, roadMaintenanceType,
-                            // and any new ...Type that appears in future (the app must not crash on new data)
+                            // and any other ...Type that might turn up in the feed later
                             String text = xpp.nextText().trim();
                             if (situation.getDetailType().isEmpty()
                                     || tag.equalsIgnoreCase(situation.getRecordType() + "Type")) {
@@ -180,7 +179,7 @@ public class TrafficXmlParser {
                 } else if (eventType == XmlPullParser.END_TAG) {
                     String tag = xpp.getName();
                     if (tag.equalsIgnoreCase("situation") && situation != null) {
-                        // Situation finished: add it to the collection
+                        // end of the situation, so add it to the list
                         situations.add(situation);
                         Log.d(TAG, situation.toString());
                         situation = null;

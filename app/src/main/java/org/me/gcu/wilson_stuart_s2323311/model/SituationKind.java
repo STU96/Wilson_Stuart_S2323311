@@ -1,6 +1,6 @@
 package org.me.gcu.wilson_stuart_s2323311.model;
 
-// The finer-grained "type" of a situation. Each kind has its own icon (see ui/SituationStyle).
+// The different types of situation - each one gets its own icon
 public enum SituationKind {
     // Unplanned events (incidents)
     ROAD_CLOSED("Road closed"),

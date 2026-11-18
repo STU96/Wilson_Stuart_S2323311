@@ -25,10 +25,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.me.gcu.wilson_stuart_s2323311.data.TrafficXmlParser;
 import org.me.gcu.wilson_stuart_s2323311.model.FeedType;
 import org.me.gcu.wilson_stuart_s2323311.model.Situation;
+import org.me.gcu.wilson_stuart_s2323311.viewmodel.TrafficViewModel;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -78,29 +80,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }
         Log.d("Keys", "Traffic Scotland keys loaded: " + !clientId.isEmpty());
 
-        // TEMPORARY parser test with the sample files
-        new Thread(() -> {
-            int[] files = { R.raw.sample_unplanned, R.raw.sample_roadworks };
-            for (int file : files) {
-                StringBuilder xml = new StringBuilder();
-                try (BufferedReader in = new BufferedReader(
-                        new InputStreamReader(getResources().openRawResource(file)))) {
-                    String line;
-                    while ((line = in.readLine()) != null) {
-                        xml.append(line).append('\n');
-                    }
-                } catch (IOException e) {
-                    Log.e("ParserTest", "Could not read sample: " + e);
-                }
-                FeedType type = (file == R.raw.sample_unplanned) ? FeedType.INCIDENT : FeedType.ROADWORKS;
-                ArrayList<Situation> list = new TrafficXmlParser().parse(xml.toString(), type);
-                Log.d("ParserTest", type.getLabel() + ": " + list.size() + " situations in the collection");
-                for (Situation s : list) {
-                    Log.d("ParserTest", s.toString());   // iterate through the collection (Lab 3)
-                }
-            }
-        }).start();
 
+        // TEMPORARY ViewModel test - MainActivity is replaced in Phase 7
+        TrafficViewModel viewModel = new ViewModelProvider(this).get(TrafficViewModel.class);
+        viewModel.getStatus().observe(this, text -> rawDataDisplay.setText(text));
+        viewModel.getIncidents().observe(this, list -> Log.d("VMTest", list.size() + " incidents"));
+        viewModel.getRoadworks().observe(this, list -> Log.d("VMTest", list.size() + " roadworks"));
 
     }
 
@@ -115,8 +100,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         new Thread(new Task(unplannedEventsURL)).start();
     } //
 
-    // Need separate thread to access the internet resource over network
-    // Other neater solutions should be adopted in later iterations.
     private class Task implements Runnable
     {
         private String result="";
@@ -132,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             try {
                 URL url = new URL(myurl);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                //ADD AUTHORISATION (string with clientIID:clientKey)
                 urlConnection.setRequestProperty("Authorization",Base64.getEncoder().encodeToString((clientId + ":" + clientKey).getBytes()));
                 try {
                     in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -151,11 +133,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 Log.e("URL", "ioexception");
             }
 
-            //Clean up any leading garbage characters
             int i = result.indexOf("<?"); //initial tag
             result = result.substring(i);
 
-            // Now that you have the xml data into result, you can parse it
             try {
                 XmlPullParserFactory factory =
                         XmlPullParserFactory.newInstance();
@@ -163,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 XmlPullParser xpp = factory.newPullParser();
                 xpp.setInput( new StringReader( result ) );
 
-                //YOUR PARSING HERE!!!
 
 
             } catch (XmlPullParserException e) {
@@ -171,9 +150,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 //throw new RuntimeException(e);
             }
 
-            // Now update the TextView to display raw XML data
-            // Probably not the best way to update TextView
-            // but we are just getting started !
 
             MainActivity.this.runOnUiThread(new Runnable()
             {

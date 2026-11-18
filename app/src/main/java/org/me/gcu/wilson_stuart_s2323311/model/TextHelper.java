@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-// Small String / date helpers used while breaking the XML text down (Lab 2 style String methods).
+// Helper methods for tidying up the text, dates and numbers that come from the XML
 public class TextHelper {
 
     // XML dates look like 2026-08-10T11:37:42+01:00
@@ -54,11 +54,11 @@ public class TextHelper {
                 result.append(c);
             }
         }
-        // Capitalise the first letter
+        // capitalise the first letter
         return Character.toUpperCase(result.charAt(0)) + result.substring(1);
     }
 
-    // Parses an int, returning -1 if the text is not a number (Lab 2 Task 3: catch NumberFormatException)
+    // Turns text into an int, or -1 if it isn't a number
     public static int parseIntSafe(String text) {
         try {
             return Integer.parseInt(text.trim());
