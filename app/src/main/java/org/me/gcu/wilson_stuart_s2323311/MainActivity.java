@@ -26,6 +26,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.me.gcu.wilson_stuart_s2323311.data.TrafficXmlParser;
+import org.me.gcu.wilson_stuart_s2323311.model.FeedType;
+import org.me.gcu.wilson_stuart_s2323311.model.Situation;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -36,6 +39,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URL;
 import java.net.HttpURLConnection;
+import java.util.ArrayList;
 import java.util.Base64;
 
 
@@ -73,6 +77,29 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             throw new RuntimeException(e);
         }
         Log.d("Keys", "Traffic Scotland keys loaded: " + !clientId.isEmpty());
+
+        // TEMPORARY parser test with the sample files
+        new Thread(() -> {
+            int[] files = { R.raw.sample_unplanned, R.raw.sample_roadworks };
+            for (int file : files) {
+                StringBuilder xml = new StringBuilder();
+                try (BufferedReader in = new BufferedReader(
+                        new InputStreamReader(getResources().openRawResource(file)))) {
+                    String line;
+                    while ((line = in.readLine()) != null) {
+                        xml.append(line).append('\n');
+                    }
+                } catch (IOException e) {
+                    Log.e("ParserTest", "Could not read sample: " + e);
+                }
+                FeedType type = (file == R.raw.sample_unplanned) ? FeedType.INCIDENT : FeedType.ROADWORKS;
+                ArrayList<Situation> list = new TrafficXmlParser().parse(xml.toString(), type);
+                Log.d("ParserTest", type.getLabel() + ": " + list.size() + " situations in the collection");
+                for (Situation s : list) {
+                    Log.d("ParserTest", s.toString());   // iterate through the collection (Lab 3)
+                }
+            }
+        }).start();
 
 
     }
