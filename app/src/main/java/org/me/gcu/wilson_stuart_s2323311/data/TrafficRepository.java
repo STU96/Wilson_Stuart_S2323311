@@ -39,7 +39,7 @@ public class TrafficRepository {
             "https://datex2.trafficscotland.org/rest/2.3/publications/CurrentRoadworks/Content.xml";
 
     // true = load the sample XML files from res/raw instead of downloading (used for testing)
-    public static final boolean USE_SAMPLE_DATA = true;
+    public static final boolean USE_SAMPLE_DATA = false;
 
     private final Context appContext;
     private final String clientId;
