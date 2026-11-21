@@ -17,4 +17,4 @@ TS_CLIENT_KEY=your_traffic_scotland_client_key
 Without them the project still builds using the placeholder values in `local.defaults.properties`.
 The ready-built `.apk` in the GitHub release already contains working keys.
 
-Contains Traffic Scotland data. Icons: Material Icons by Google (Apache License 2.0).
+Contains Traffic Scotland data. Icons: Material Design Icons by Pictogrammers (Apache License 2.0).

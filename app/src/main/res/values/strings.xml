@@ -1,20 +1,25 @@
 <resources>
     <string name="app_name">Wilson_Stuart_S2323311</string>
+
     <string name="app_title">Scotland Road Watch</string>
     <string name="loading">Loading traffic data…</string>
     <string name="acknowledgement">Contains Traffic Scotland data</string>
+
     <string name="nav_incidents">Incidents</string>
     <string name="nav_roadworks">Roadworks</string>
     <string name="nav_search">Search</string>
     <string name="nav_map">Map</string>
+
     <string name="refresh">Refresh</string>
     <string name="refreshing">Refreshing data…</string>
     <string name="about">About</string>
-    <string name="about_text">Shows current unplanned events (incidents) and roadworks on Scotland\'s trunk roads.\n\nContains Traffic Scotland data, downloaded from the DATEX II service and updated automatically every hour.\n\nIcons: Material Icons by Google, Apache License 2.0.</string>
+    <string name="about_text">Shows current unplanned events (incidents) and roadworks on Scotland\'s trunk roads.\n\nContains Traffic Scotland data, downloaded from the DATEX II service and updated automatically every hour.\n\nIcons: Material Design Icons by Pictogrammers, Apache License 2.0.</string>
+
     <string name="filter_hint">Filter this list (road, place, type)</string>
     <string name="no_situations">No situations to show</string>
     <string name="nothing_selected">Nothing selected</string>
     <string name="show_on_map">Show on full map</string>
+
     <string name="by_road">By road</string>
     <string name="by_distance">By distance</string>
     <string name="road_hint">Road, e.g. M8 or A90</string>
@@ -25,14 +30,17 @@
     <string name="results_map">Map results</string>
     <string name="no_results">No results yet – run a search above</string>
     <string name="finding_location">Finding your location…</string>
+
     <string name="layer_incidents">Incidents</string>
     <string name="layer_roadworks">Roadworks</string>
     <string name="satellite">Satellite</string>
+
     <string name="legend_incident">Incident</string>
     <string name="legend_none">No delays</string>
     <string name="legend_short">Delays</string>
     <string name="legend_long">Long delays</string>
     <string name="legend_very_long">Very long</string>
+
     <string-array name="sort_options">
         <item>Newest first</item>
         <item>Road (A–Z)</item>

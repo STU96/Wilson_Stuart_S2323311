@@ -2,30 +2,20 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <!--  X11 colour values  -->
-    <color name="primary">#191970</color>
-    <!--  MidnightBlue  -->
-    <color name="screen_background">#F5F5F5</color>
-    <!--  WhiteSmoke  -->
-    <color name="status_background">#E6E6FA</color>
-    <!--  Lavender  -->
-    <color name="status_text">#2F4F4F</color>
-    <!--  DarkSlateGray  -->
-    <color name="offline_text">#B22222</color>
-    <!--  Firebrick  -->
-    <color name="text_secondary">#696969</color>
-    <!--  DimGray  -->
-    <color name="nav_unselected">#FFFFFF</color>
-    <!--  White  -->
-    <!--  Situation colours: incidents, and roadworks colour-coded by delay (short to long)  -->
-    <color name="incident">#4B0082</color>
-    <!--  Indigo  -->
-    <color name="delay_none">#228B22</color>
-    <!--  ForestGreen: no delays reported  -->
-    <color name="delay_short">#B8860B</color>
-    <!--  DarkGoldenrod: delays  -->
-    <color name="delay_long">#FF8C00</color>
-    <!--  DarkOrange: long delays  -->
-    <color name="delay_very_long">#B22222</color>
-    <!--  Firebrick: very long delays  -->
+
+    <!-- X11 colour values -->
+    <color name="primary">#191970</color>            <!-- MidnightBlue -->
+    <color name="screen_background">#F5F5F5</color>  <!-- WhiteSmoke -->
+    <color name="status_background">#E6E6FA</color>  <!-- Lavender -->
+    <color name="status_text">#2F4F4F</color>        <!-- DarkSlateGray -->
+    <color name="offline_text">#B22222</color>       <!-- Firebrick -->
+    <color name="text_secondary">#696969</color>     <!-- DimGray -->
+    <color name="nav_unselected">#FFFFFF</color>     <!-- White -->
+
+    <!-- Situation colours: incidents, and roadworks colour-coded by delay (short to long) -->
+    <color name="incident">#4B0082</color>           <!-- Indigo -->
+    <color name="delay_none">#228B22</color>         <!-- ForestGreen: no delays reported -->
+    <color name="delay_short">#B8860B</color>        <!-- DarkGoldenrod: delays -->
+    <color name="delay_long">#FF8C00</color>         <!-- DarkOrange: long delays -->
+    <color name="delay_very_long">#B22222</color>    <!-- Firebrick: very long delays -->
 </resources>

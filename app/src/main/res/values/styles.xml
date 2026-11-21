@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--  Navigation buttons along the bottom (portrait): icon above the text  -->
+    <!-- Navigation buttons along the bottom (portrait): icon above the text -->
     <style name="NavButton" parent="Widget.Material3.Button">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -15,7 +15,8 @@
         <item name="iconPadding">2dp</item>
         <item name="cornerRadius">12dp</item>
     </style>
-    <!--  Navigation buttons down the side (landscape): icon before the text  -->
+
+    <!-- Navigation buttons down the side (landscape): icon before the text -->
     <style name="NavButtonSide" parent="Widget.Material3.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -26,7 +27,8 @@
         <item name="iconPadding">12dp</item>
         <item name="cornerRadius">12dp</item>
     </style>
-    <!--  Small coloured legend chip  -->
+
+    <!-- Small coloured legend chip -->
     <style name="LegendChip">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Landscape: toolbar on top, navigation column on the left, content on the right.
+     Uses the same ids as the portrait layout. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_background"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
+        app:title="@string/app_title"
+        app:titleTextColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="190dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:elevation="8dp"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/status_background"
+                android:padding="6dp"
+                android:text="@string/loading"
+                android:textColor="@color/status_text"
+                android:textSize="12sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnIncidents"
+                style="@style/NavButtonSide"
+                android:text="@string/nav_incidents"
+                app:icon="@drawable/ic_obstruction" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRoadworks"
+                style="@style/NavButtonSide"
+                android:text="@string/nav_roadworks"
+                app:icon="@drawable/ic_roadworks" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSearch"
+                style="@style/NavButtonSide"
+                android:text="@string/nav_search"
+                app:icon="@drawable/ic_search" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMap"
+                style="@style/NavButtonSide"
+                android:text="@string/nav_map"
+                app:icon="@drawable/ic_map" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/acknowledgement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/acknowledgement"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

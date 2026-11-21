@@ -1,9 +1,88 @@
-<!--  MPD XML Starter code 2025-2026  -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/main" android:layout_width="fill_parent" android:layout_height="fill_parent">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <TextView android:id="@+id/salutation" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20sp" android:text="Welcome to Mobile Platform Development"/>
-        <Button android:id="@+id/startButton" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Press to get data"/>
-        <TextView android:id="@+id/acknowledgement" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20sp" android:text="Contains Traffic Scotland data"/>
-        <TextView android:id="@+id/rawDataDisplay" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20sp" android:text="Raw Data is Displayed here"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Portrait: toolbar, status line, content in the middle, navigation buttons along the bottom -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_background"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
+        app:title="@string/app_title"
+        app:titleTextColor="@color/white" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/status_background"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
+        android:text="@string/loading"
+        android:textColor="@color/status_text"
+        android:textSize="13sp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="8dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnIncidents"
+            style="@style/NavButton"
+            android:text="@string/nav_incidents"
+            app:icon="@drawable/ic_obstruction" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRoadworks"
+            style="@style/NavButton"
+            android:text="@string/nav_roadworks"
+            app:icon="@drawable/ic_roadworks" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSearch"
+            style="@style/NavButton"
+            android:text="@string/nav_search"
+            app:icon="@drawable/ic_search" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMap"
+            style="@style/NavButton"
+            android:text="@string/nav_map"
+            app:icon="@drawable/ic_map" />
     </LinearLayout>
-</ScrollView>
+
+    <TextView
+        android:id="@+id/acknowledgement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingBottom="2dp"
+        android:text="@string/acknowledgement"
+        android:textColor="@color/text_secondary"
+        android:textSize="11sp" />
+</LinearLayout>

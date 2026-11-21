@@ -34,7 +34,7 @@ public class TrafficViewModel extends AndroidViewModel {
     private static final String TAG = "TrafficViewModel";
 
     // How often the data updates automatically, in minutes
-    public static final long UPDATE_INTERVAL_MINUTES = 1;
+    public static final long UPDATE_INTERVAL_MINUTES = 60;
 
     public enum MapMode { ALL, SINGLE, SEARCH }
 
